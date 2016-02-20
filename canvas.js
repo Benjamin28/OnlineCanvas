@@ -1,18 +1,32 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-ctx.fillStyle = "#000000";
 //ctx.fillRect(0,0,ctx.canvas.width, ctx.canvas.height/2);
 
 
-ctx.fillStyle = "#000000";
 
-
-for ( i = 1; i < 100 ; i++){
-
-    ctx.fillStyle = "#" + i%10 + i%10 + "0000";
+function rectangularTunnel(c, ctx, ULx, ULy, BRx, BRy){
     
-    ctx.fillRect(    ctx.canvas.width* ((i-1)/100)/2
-		   , ctx.canvas.height* ((i-1)/100)/2
-		   , ctx.canvas.width - ctx.canvas.width * ((i-1)/100)
-		   , (ctx.canvas.height - ctx.canvas.height  * ((i-1)/100)));
+    ctx.fillStyle = "#000000";
+
+    var scaleFactor = 1;
+
+    var w = ctx.canvas.height;
+    var h = ctx.canvas.height;
+
+    for ( i = 1; i < 255 ; i++){
+
+    
+
+	ctx.fillStyle = "#" + "00" + i.toString(16) + "00";
+    
+	ctx.fillRect(        BRx  * ((i-1)/265)/2 * (2-scaleFactor)
+			   
+			   , BRy  * ((i-1)/256)/2 * (2-scaleFactor)
+		     
+			   , BRx   - BRx   * ( (i-1) / 256  ) * scaleFactor
+		     
+			   ,(BRy - BRy  * ( (i-1) / 256) * scaleFactor ));
+    }
 }
+
+rectanuglarTunnel(c, ctx, 0, 0, ctx.canvas.width, ctx.canvas.height);
